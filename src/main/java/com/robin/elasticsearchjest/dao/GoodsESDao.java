@@ -66,10 +66,10 @@ public class GoodsESDao<T extends GoodsESEntity> extends BaseElasticsearchDao<Go
         map.put("groupData","保时捷跑车V20");
 
         // 分页
-        ESPageRequest esPageRequest = new ESPageRequest(1, 2);
+        ESPageRequest esPageRequest = ESPageRequest.builder(1, 2);
 
         // 排序
-        ESSort esSort = new ESSort(SortOrder.ASC,"goodsId");
+        ESSort esSort = ESSort.builder(SortOrder.ASC, "goodsId");
 
         ESPageResult<GoodsESEntity> search = searchByEq(map, esPageRequest, esSort);
         return search;

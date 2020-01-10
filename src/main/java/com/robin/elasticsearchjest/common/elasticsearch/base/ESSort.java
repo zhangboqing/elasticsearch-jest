@@ -16,17 +16,24 @@ import java.util.List;
  */
 public class ESSort {
 
+    /** 排序对象集合 */
     public final List<ESOrder> orders;
-    public ESSort() {
+    private ESSort() {
         orders = new ArrayList<>();
     }
 
-    public ESSort(SortOrder direction, String property) {
+    private ESSort(SortOrder direction, String property) {
         orders = new ArrayList<>();
         add(direction,property);
     }
 
+    public static ESSort builder() {
+        return new ESSort();
+    }
 
+    public static ESSort builder(SortOrder direction, String property) {
+        return new ESSort(direction,property);
+    }
 
     /**
      * 追加排序字段
@@ -48,7 +55,9 @@ public class ESSort {
     @Data
     public static class ESOrder implements Serializable {
 
+        /** 方向 */
         private final SortOrder direction;
+        /** 字段名 */
         private final String property;
 
     }

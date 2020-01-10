@@ -9,11 +9,13 @@ import lombok.Data;
  */
 @Data
 public class ESPageRequest {
-
+    /** 当前页 */
     private final int pageNo;
+    /** 每页大小 */
     private final int size;
 
-    public ESPageRequest(int pageNo, int size) {
+
+    private ESPageRequest(int pageNo, int size) {
 
         if (pageNo < 0) {
             throw new IllegalArgumentException("Page index must not be less than zero!");
@@ -27,6 +29,9 @@ public class ESPageRequest {
         this.size = size;
     }
 
+    public static ESPageRequest builder(int pageNo,int size) {
+        return new ESPageRequest(pageNo,size);
+    }
 
 }
 

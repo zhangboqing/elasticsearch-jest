@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * @Author zhangboqing
  * @Date 2019-12-30
- * 分页结果
+ * 分页结果对象
  */
 @Data
 public class ESPageResult<T> {
-
+    /** 总记录数 */
     private final long total;
     private final int pageNo;
     private final int pageSize;
