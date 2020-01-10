@@ -1,5 +1,5 @@
 ## 使用教程
-####1）引入elasticsearch-jest依赖,并指定你的elasticsearch版本，默认5.5.3
+#### 1）引入elasticsearch-jest依赖,并指定你的elasticsearch版本，默认5.5.3
 ```
     <dependency>
         <groupId>com.robin</groupId>
@@ -12,7 +12,7 @@
         <version>${elasticsearch}</version>
     </dependency>
 ```    
-####2）定义es文档对象,需要使用相关的ES注解进行标注
+#### 2）定义es文档对象,需要使用相关的ES注解进行标注
 ```java
     @Data
     @NoArgsConstructor
@@ -62,7 +62,7 @@
         private String groupData;
     }
 ```
-####3）定义es DAO数据库访问对象，需要继承BaseElasticsearchDao类（封装了基本的增删改查操作）
+#### 3）定义es DAO数据库访问对象，需要继承BaseElasticsearchDao类（封装了基本的增删改查操作）
 ```java
     @Component
     public class GoodsESDao<T extends GoodsESEntity> extends BaseElasticsearchDao<GoodsESEntity> {
