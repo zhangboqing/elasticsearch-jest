@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "jest.data.elasticsearch")
+@ConfigurationProperties(prefix = "data.elasticsearch.jest")
 public class ElasticsearchProperties {
 
     /**

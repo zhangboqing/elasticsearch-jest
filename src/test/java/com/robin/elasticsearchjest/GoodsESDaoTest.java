@@ -29,6 +29,7 @@ class GoodsESDaoTest {
         list.add(GoodsESEntity.builder().goodsId(4L).goodsName("保时捷跑车V20").goodBrand("国际2").goodsSpec("哈哈4").goodsAccessoriesCode("所噶4").goodsOriginalFactoryCode("2124").groupData("保时捷跑车V40 国际4 哈哈4 所噶4 2124").build());
         list.add(GoodsESEntity.builder().goodsId(5L).goodsName("保时捷跑车V30").goodBrand("国际1").goodsSpec("哈哈5").goodsAccessoriesCode("所噶5").goodsOriginalFactoryCode("2125").groupData("保时捷跑车V50 国际5 哈哈5 所噶5 2125").build());
         list.add(GoodsESEntity.builder().goodsId(6L).goodsName("保时捷跑车V40").goodBrand("国际2").goodsSpec("哈哈6").goodsAccessoriesCode("所噶6").goodsOriginalFactoryCode("2126").groupData("保时捷跑车V60 国际6 哈哈6 所噶6 2126").build());
+        list.add(GoodsESEntity.builder().goodsName("212").goodBrand("21").goodsSpec("212").goodsAccessoriesCode("212").goodsOriginalFactoryCode("221").groupData("213212vasfdadfa").build());
 
         goodsESDao.saveOrUpdate(list);
     }

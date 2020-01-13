@@ -271,7 +271,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
     private String getIdValue(T genericInstance) {
         try {
             Object idValue = idField.get(genericInstance);
-            return idValue.toString();
+            return idValue == null ? null : idValue.toString();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

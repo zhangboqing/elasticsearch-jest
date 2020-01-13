@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
  * @author zhangboqing
  * @date 2019/12/10
  */
-@ConditionalOnProperty(prefix = "jest.data.elasticsearch", value = "urls[0]")
+@ConditionalOnProperty(prefix = "data.elasticsearch.jest", value = "urls[0]")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @EnableConfigurationProperties(ElasticsearchProperties.class)
 @Import(ElasticsearchUtils.class)

@@ -48,6 +48,7 @@ public class ElasticsearchUtils {
 
     /**
      * 判断index是否存在
+     *
      * @param indexName 索引名称
      * @return 如果索引存在返回true，否则false
      */
@@ -76,6 +77,7 @@ public class ElasticsearchUtils {
 
     /**
      * 创建index
+     *
      * @param indexName 索引名称
      */
     public void createIndexRequest(String indexName) {
@@ -84,6 +86,7 @@ public class ElasticsearchUtils {
 
     /**
      * 创建index
+     *
      * @param indexName 索引名称
      * @param shards    分片数量
      * @param replicas  副本数量
@@ -93,6 +96,7 @@ public class ElasticsearchUtils {
             return;
         }
 
+        log.info("start create indexName ：{}", indexName);
         try {
             Settings.Builder settingsBuilder = Settings.builder();
             settingsBuilder.put("number_of_shards", shards);
@@ -100,7 +104,7 @@ public class ElasticsearchUtils {
 
             JestResult result = client.execute(new CreateIndex.Builder(indexName).settings(settingsBuilder.build().getAsMap()).build());
             int responseCode = result.getResponseCode();
-            log.info(" createIndexRequest responseCcode: {},jsonString: {},errorMessage: {}", result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
+            log.info(" createIndexRequest indexName:{}, responseCode: {},jsonString: {},errorMessage: {}", indexName, result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
             if (responseCode != 200) {
                 throw new ElasticsearchException("创建索引 {" + indexName + "} 失败");
             }
@@ -111,6 +115,7 @@ public class ElasticsearchUtils {
 
     /**
      * 创建或更新索引文档Mapping
+     *
      * @param indexName 索引名称
      * @param clazz     指定的es文档对象class
      */
@@ -120,6 +125,7 @@ public class ElasticsearchUtils {
             return;
         }
 
+        log.info("start put mapping for indexName ：{}", indexName);
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder();
             builder.startObject();
@@ -167,7 +173,7 @@ public class ElasticsearchUtils {
                     builder.string()
             ).build();
             JestResult result = client.execute(putMapping);
-            log.info(" putMappingRequest responseCcode: {},jsonString: {},errorMessage: {}", result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
+            log.info(" putMappingRequest indexName:{}, responseCode: {},jsonString: {},errorMessage: {}", indexName, result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -176,12 +182,13 @@ public class ElasticsearchUtils {
 
     /**
      * 删除index
+     *
      * @param indexName 索引名称
      */
     public void deleteIndexRequest(String indexName) {
         try {
             JestResult result = client.execute(new DeleteIndex.Builder(indexName).build());
-            log.info(" deleteIndexRequest responseCcode: {},errorMessage: {}", result.getResponseCode(), result.getErrorMessage());
+            log.info(" deleteIndexRequest indexName:{}, responseCode: {},jsonString: {},errorMessage: {}", indexName, result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
         } catch (IOException e) {
             throw new ElasticsearchException("删除索引 {" + indexName + "} 失败");
         }
@@ -189,6 +196,7 @@ public class ElasticsearchUtils {
 
     /**
      * 更新文档
+     *
      * @param indexName 索引名称
      * @param id        文档ID
      * @param object    文档对象
@@ -196,7 +204,7 @@ public class ElasticsearchUtils {
     public void updateRequest(String indexName, String id, Object object) {
         try {
             JestResult result = client.execute(new Update.Builder(JSON.toJSONString(object)).index(indexName).type(indexName).id(id).build());
-            log.info(" updateRequest responseCcode: {},errorMessage: {}", result.getResponseCode(), result.getErrorMessage());
+            log.info(" updateRequest indexName:{}, responseCode: {},jsonString: {},errorMessage: {}", indexName, result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
         } catch (IOException e) {
             throw new ElasticsearchException("更新索引 {" + indexName + "} 数据 {" + object + "} 失败");
         }
@@ -204,13 +212,14 @@ public class ElasticsearchUtils {
 
     /**
      * 删除文档
+     *
      * @param indexName 索引名称
      * @param id        文档ID
      */
     public void deleteRequest(String indexName, String id) {
         try {
             JestResult result = client.execute(new Delete.Builder(id).index(indexName).type(indexName).build());
-            log.info(" updateRequest responseCcode: {},errorMessage: {}", result.getResponseCode(), result.getErrorMessage());
+            log.info(" deleteRequest indexName:{},id :{} ,responseCode: {},jsonString: {},errorMessage: {}", indexName, id,result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
         } catch (IOException e) {
             throw new ElasticsearchException("删除索引 {" + indexName + "} 数据id {" + id + "} 失败");
         }
@@ -218,8 +227,9 @@ public class ElasticsearchUtils {
 
     /**
      * 搜索所有文档
+     *
      * @param indexName 索引名称
-     * @return  返回搜索结果
+     * @return 返回搜索结果
      */
     public SearchResult search(String indexName) {
 
@@ -234,7 +244,7 @@ public class ElasticsearchUtils {
         SearchResult result = null;
         try {
             result = client.execute(search);
-            log.info(" updateRequest responseCcode: {},errorMessage: {}", result.getResponseCode(), result.getErrorMessage());
+            log.info(" search indexName:{} ,responseCode: {},jsonString: {},errorMessage: {}", indexName,result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

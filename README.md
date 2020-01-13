@@ -12,7 +12,20 @@
         <version>${elasticsearch}</version>
     </dependency>
 ```    
-#### 2）定义es文档对象,需要使用相关的ES注解进行标注
+#### 2）在application.yml配置文件中指定相关属性
+```yaml
+    data:
+      elasticsearch:
+        jest:
+          # es集群节点  http://localhost:9200
+          urls:
+            - 'http://localhost:9200'
+          # 设置连接es的用户名和密码
+          account:
+            username: elastic
+            password: 123456
+```
+#### 3）定义es文档对象,需要使用相关的ES注解进行标注
 ```java
     @Data
     @NoArgsConstructor
@@ -62,7 +75,7 @@
         private String groupData;
     }
 ```
-#### 3）定义es DAO数据库访问对象，需要继承BaseElasticsearchDao类（封装了基本的增删改查操作）
+#### 4）定义es DAO数据库访问对象，需要继承BaseElasticsearchDao类（封装了基本的增删改查操作）
 ```java
     @Component
     public class GoodsESDao<T extends GoodsESEntity> extends BaseElasticsearchDao<GoodsESEntity> {
