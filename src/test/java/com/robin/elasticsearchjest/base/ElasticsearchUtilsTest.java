@@ -1,7 +1,7 @@
 package com.robin.elasticsearchjest.base;
 
 import com.robin.elasticsearchjest.common.elasticsearch.base.ElasticsearchUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,5 +19,10 @@ class ElasticsearchUtilsTest {
     @Test
     void existIndex() {
         elasticsearchUtils.existIndex("goods");
+    }
+
+    @Test
+    void search() {
+        elasticsearchUtils.search("goods");
     }
 }

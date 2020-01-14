@@ -244,7 +244,7 @@ public class ElasticsearchUtils {
         SearchResult result = null;
         try {
             result = client.execute(search);
-            log.info(" search indexName:{} ,responseCode: {},jsonString: {},errorMessage: {}", indexName,result.getResponseCode(), result.getJsonString(), result.getErrorMessage());
+            log.info(" search indexName:{} ,responseCode: {},errorMessage: {}", indexName,result.getResponseCode(), result.getErrorMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

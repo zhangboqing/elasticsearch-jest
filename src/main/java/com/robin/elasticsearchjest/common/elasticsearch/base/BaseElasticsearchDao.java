@@ -82,7 +82,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
             Index index = new Index.Builder(genericInstance).index(indexName).type(indexName).id(getIdValue(genericInstance)).build();
             try {
                 JestResult result = client.execute(index);
-                log.info(" saveOrUpdate responseCcode: {},errorMessage: {}", result.getResponseCode(),result.getErrorMessage());
+                log.info(" saveOrUpdate responseCode: {},errorMessage: {}", result.getResponseCode(),result.getErrorMessage());
             } catch (IOException e) {
                 e.printStackTrace();
                 log.error("elasticsearch insert error", e);
@@ -203,7 +203,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
         SearchResult result = null;
         try {
             result = client.execute(search);
-            log.info(" updateRequest responseCcode: {},errorMessage: {}", result.getResponseCode(),result.getErrorMessage());
+            log.info(" updateRequest responseCode: {},errorMessage: {}", result.getResponseCode(),result.getErrorMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
