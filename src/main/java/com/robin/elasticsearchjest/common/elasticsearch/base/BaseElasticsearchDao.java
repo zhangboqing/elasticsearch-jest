@@ -108,7 +108,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
      * @param fieldNameToQueryValue key:fieldName;value:queryValue
      * @return
      */
-    public ESPageResult<T> searchByEq(Map<String,String> fieldNameToQueryValue,ESPageRequest esPageRequest, ESSort esSort) {
+    public ESPageResult<T> searchByEq(Map<String,String> fieldNameToQueryValue, ESPageRequest esPageRequest, ESSort esSort) {
         Assert.notEmpty(fieldNameToQueryValue,"fieldNameToQueryValue is null");
 
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
@@ -141,7 +141,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
      * @param fieldNameToQueryValue key:fieldName;value:queryValue
      * @return
      */
-    public ESPageResult<T> searchByLike(Map<String,String> fieldNameToQueryValue,ESPageRequest esPageRequest, ESSort esSort) {
+    public ESPageResult<T> searchByLike(Map<String,String> fieldNameToQueryValue, ESPageRequest esPageRequest, ESSort esSort) {
         Assert.notEmpty(fieldNameToQueryValue,"fieldNameToQueryValue is null");
 
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
@@ -183,7 +183,7 @@ public abstract class BaseElasticsearchDao<T> implements InitializingBean {
 
         // 分页
         if (esPageRequest != null) {
-            searchSourceBuilder.from(esPageRequest.getPageNo());
+            searchSourceBuilder.from(esPageRequest.getPageNo() - 1);
             searchSourceBuilder.size(esPageRequest.getSize());
         }
 
